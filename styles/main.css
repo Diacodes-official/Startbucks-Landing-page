@@ -257,7 +257,6 @@ body.menu-open {
     transition: none !important;
     scroll-behavior: auto !important;
   }
-}
 
 @media (max-width: 900px) {
   .content {
