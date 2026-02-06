@@ -15,6 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="./images/green-cup.png" />
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body>
@@ -35,8 +36,8 @@
           <span></span>
         </button>
 
-        <nav>
-          <ul class="navigation" id="primary-navigation">
+        <nav aria-label="Primary navigation">
+          <ul class="navigation" id="primary-navigation" data-open="false">
             <li><a href="#">Home</a></li>
             <li><a href="#">Menu</a></li>
             <li><a href="#">New</a></li>
@@ -111,13 +112,24 @@
       const thumbs = document.querySelectorAll('.thumb');
       const menuToggle = document.querySelector('.menu-toggle');
       const navigation = document.querySelector('.navigation');
+      const navLinks = document.querySelectorAll('.navigation a');
+
+      const setMenuState = (isOpen) => {
+        navigation.classList.toggle('active', isOpen);
+        navigation.dataset.open = String(isOpen);
+        menuToggle.classList.toggle('active', isOpen);
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        document.body.classList.toggle('menu-open', isOpen);
+      };
 
       thumbs.forEach((thumb) => {
         thumb.addEventListener('click', () => {
           const { image, color } = thumb.dataset;
           if (!image || !color) return;
 
-          mainImage.src = image;
+          if (mainImage.getAttribute('src') !== image) {
+            mainImage.src = image;
+          }
           hero.style.setProperty('--hero-accent', `var(${color})`);
 
           thumbs.forEach((item) => item.classList.remove('is-active'));
@@ -126,9 +138,24 @@
       });
 
       menuToggle.addEventListener('click', () => {
-        const isOpen = navigation.classList.toggle('active');
-        menuToggle.classList.toggle('active', isOpen);
-        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        const isOpen = navigation.dataset.open !== 'true';
+        setMenuState(isOpen);
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener('click', () => setMenuState(false));
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navigation.dataset.open === 'true') {
+          setMenuState(false);
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 900 && navigation.dataset.open === 'true') {
+          setMenuState(false);
+        }
       });
     </script>
   </body>
