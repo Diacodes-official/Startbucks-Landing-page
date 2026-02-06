@@ -1,119 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="./styles/main.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Startbucks Landing Page</title>
+    <title>Starbucks Landing Page</title>
+    <meta
+      name="description"
+      content="A modern, minimal Starbucks-inspired landing page with an interactive product preview."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body>
-    <section id="hero-section">
-      <header>
-        <div class="logo"><img src="./images/logo.png" alt="" /></div>
-        <div class="toggle" onclick="toggleActivator()"></div>
-        <ul class="navigation">
-          <li><a href="">Home</a></li>
-          <li><a href="">Menu</a></li>
-          <li><a href="">What's New</a></li>
-          <li><a href="">Contact</a></li>
-        </ul>
+    <section class="hero" id="hero-section">
+      <header class="header">
+        <a class="brand" href="#hero-section" aria-label="Starbucks home">
+          <img src="./images/logo.png" alt="Starbucks logo" width="64" height="64" />
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav>
+          <ul class="navigation" id="primary-navigation">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">New</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
       </header>
-      <div class="content">
+
+      <main class="content">
         <div class="text">
-          <div class="title">
-            <h1>It's not just coffe<br />It's <span>Starbucks</span></h1>
-          </div>
-          <div class="subtitle">
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum
-              excepturi perspiciatis voluptatum soluta. Ipsum veritatis quae
-              commodi aut soluta dolorem alias, deserunt mollitia sunt corporis,
-              quas dolores voluptatem. Quod, qui.
-            </p>
-          </div>
-          <div class="button">
-            <button>
-              <h2>Learn More</h2>
-            </button>
-          </div>
+          <p class="eyebrow">Freshly crafted</p>
+          <h1>It's not just coffee. It's <span>Starbucks.</span></h1>
+          <p class="subtitle">
+            Discover a cleaner coffee experience with bold flavor, modern aesthetics, and a faster, responsive interface tailored for every device.
+          </p>
+          <button class="cta" type="button">Learn More</button>
         </div>
-        <div class="img"><img src="./images/green-cup.png" alt="" /></div>
+
+        <div class="product-card">
+          <img
+            class="main-product"
+            src="./images/green-cup.png"
+            alt="Green Starbucks cup"
+            width="420"
+            height="560"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </div>
+      </main>
+
+      <div class="picker" aria-label="Drink color selector">
+        <button
+          class="thumb is-active"
+          type="button"
+          data-image="./images/green-cup.png"
+          data-color="--clr-green"
+          aria-label="Show green cup"
+        >
+          <img src="./images/thumb1.png" alt="Green cup thumbnail" width="64" height="64" loading="lazy" decoding="async" />
+        </button>
+        <button
+          class="thumb"
+          type="button"
+          data-image="./images/shallow-pink-cup.png"
+          data-color="--clr-shallow-pink"
+          aria-label="Show rose cup"
+        >
+          <img src="./images/thumb2.png" alt="Rose cup thumbnail" width="64" height="64" loading="lazy" decoding="async" />
+        </button>
+        <button
+          class="thumb"
+          type="button"
+          data-image="./images/pink-cup.png"
+          data-color="--clr-pink"
+          aria-label="Show pink cup"
+        >
+          <img src="./images/thumb3.png" alt="Pink cup thumbnail" width="64" height="64" loading="lazy" decoding="async" />
+        </button>
       </div>
-      <div class="thumbnails">
-        <ul>
-          <li>
-            <img
-              src="./images/thumb1.png"
-              alt=""
-              onclick="changeImage('./images/green-cup.png'), changeBg('--clr--green')"
-            />
-          </li>
-          <li>
-            <img
-              src="./images/thumb2.png"
-              alt=""
-              onclick="changeImage('./images/shallow-pink-cup.png'), changeBg('--clr--shallow-pink')"
-            />
-          </li>
-          <li>
-            <img
-              src="./images/thumb3.png"
-              alt=""
-              onclick="changeImage('./images/pink-cup.png'), changeBg('--clr--pink')"
-            />
-          </li>
-        </ul>
-      </div>
-      <div class="socials">
-        <ul>
-          <li><ion-icon name="logo-instagram"></ion-icon></li>
-          <li><ion-icon name="logo-facebook"></ion-icon></li>
-          <li><ion-icon name="logo-dribbble"></ion-icon></li>
-        </ul>
-      </div>
-      <div class="circle-bg"></div>
+
+      <ul class="socials" aria-label="Social media links">
+        <li><a href="#" aria-label="Instagram">IG</a></li>
+        <li><a href="#" aria-label="Facebook">FB</a></li>
+        <li><a href="#" aria-label="Dribbble">DB</a></li>
+      </ul>
     </section>
 
     <script>
-      const mainImage = document.querySelector(".img img");
-      const circleBg = document.querySelector(".circle-bg");
-      const thumbnails = document.querySelectorAll(".thumbnails li");
-      const toggle = document.querySelector(".toggle");
-      const navigation = document.querySelector(".navigation");
+      const hero = document.querySelector('.hero');
+      const mainImage = document.querySelector('.main-product');
+      const thumbs = document.querySelectorAll('.thumb');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navigation = document.querySelector('.navigation');
 
-      console.log(mainImage);
-      function changeImage(image) {
-        mainImage.src = image;
-      }
-      function changeBg(color) {
-        circleBg.style.background = `var(${color})`;
-      }
+      thumbs.forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+          const { image, color } = thumb.dataset;
+          if (!image || !color) return;
 
-      function toggleActivator() {
-        toggle.classList.toggle("active");
-        navigation.classList.toggle("active"); // dar toggle agar class vojood darsh oon ra pak mikonad va agar nabood ezafe
-      }
-      //   thumbnails.forEach((item) => {
-      //     item.addEventListener("click", () => {
-      //       item.style.transform = "translateY(0)";
-      //       .style.transform = "translateY(-10px)";
-      //     });
-      //   });
+          mainImage.src = image;
+          hero.style.setProperty('--hero-accent', `var(${color})`);
+
+          thumbs.forEach((item) => item.classList.remove('is-active'));
+          thumb.classList.add('is-active');
+        });
+      });
+
+      menuToggle.addEventListener('click', () => {
+        const isOpen = navigation.classList.toggle('active');
+        menuToggle.classList.toggle('active', isOpen);
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+      });
     </script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
   </body>
 </html>
